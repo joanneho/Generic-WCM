@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/generic">
+        <exclude pattern="/apps/generic/install(/.*)?" />
+	    <exclude pattern="^.*/*.DS_Store" />
+	    <exclude pattern="^.*/*.bak" />
+        <exclude pattern="^.*/*.tmp" />
+    </filter>
+    <filter root="/apps/generic">
+        <exclude pattern="install" />
+    </filter>
+    <filter root="/apps/generic/templates"/>
+    <filter root="/apps/generic/components"/>
+    <filter root="/etc/designs/generic"/>
+    <filter root="/etc/generic"/>
+</workspaceFilter>

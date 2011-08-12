@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2010-06-10T13:41:40.047-07:00"
+        cq:lastModifiedBy="admin"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Generic Designs"
+        sling:resourceType="wcm/core/components/designer">
+        <configurationstyle jcr:primaryType="nt:unstructured">
+            <configuration
+                facebookAppId="229234510432104"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="generic/components/configuration"/>
+        </configurationstyle>
+        <homepage jcr:primaryType="nt:unstructured">
+            <breadcrumb
+                absParent="/content/generic"
+                delim=" "
+                jcr:primaryType="nt:unstructured"
+                relParent="0"
+                sling:resourceType="foundation/components/breadcrumb"/>
+            <leftPar
+                jcr:primaryType="nt:unstructured"
+                jcr:lastModifiedBy="admin"
+                sling:resourceType="foundation/components/parsys"
+                components="[foundation/components/textimage]">
+                <section jcr:primaryType="nt:unstructured"/>
+            </leftPar>
+            <teasersPar
+                jcr:primaryType="nt:unstructured"
+                jcr:lastModifiedBy="admin"
+                sling:resourceType="foundation/components/parsys"
+                components="[General]">
+                <section jcr:primaryType="nt:unstructured"/>
+            </teasersPar>
+            <storiesPar
+                jcr:primaryType="nt:unstructured"
+                jcr:lastModifiedBy="admin"
+                sling:resourceType="foundation/components/parsys"
+                components="[General]">
+                <section jcr:primaryType="nt:unstructured"/>
+            </storiesPar>
+            <rightpar
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="foundation/components/parsys"
+                components="[General]">
+                <section jcr:primaryType="nt:unstructured"/>
+            </rightpar>
+        </homepage>
+    </jcr:content>
+</jcr:root>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.generic.wcm</groupId>
+        <artifactId>wcm</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.generic.wcm</groupId>
+    <artifactId>ui</artifactId>
+    <packaging>content-package</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>ui</name>
+
+    <description>Generic - UI</description>
+
+    <properties>
+        <content.install.dir>${project.build.directory}/classes/jcr_root/apps/generic/install</content.install.dir>
+        <core.version>1.0-SNAPSHOT</core.version>
+        <core.name>core</core.name>
+        <sling.url>${crx.url}/system/console/install</sling.url>
+        <crx.pkgmgr.url>${crx.url}/crx/packmgr/service.jsp</crx.pkgmgr.url>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${core.name}</artifactId>
+            <version>${core.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    
+	<build>
+		<resources>
+   		<!-- filter meta information to get some properties into the files -->
+			<resource>
+				<directory>${basedir}/src/main/content/META-INF</directory>
+				<targetPath>../vault-work/META-INF</targetPath>
+			</resource>
+			<!-- exclude .vlt control files and tests -->
+			<resource>
+				<directory>${basedir}/src/main/content/jcr_root</directory>
+				<excludes>
+					<exclude>**/.vlt</exclude>
+					<exclude>**/.vltignore</exclude>
+					<exclude>**/.DS_Store</exclude>
+				</excludes>
+				<targetPath>../vault-work/jcr_root</targetPath>
+			</resource>
+		</resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <validationSets>
+                        <validationSet>
+                            <dir>src/main/content/jcr_root</dir>
+                            <includes>
+                                <include>**/*.xml</include>
+                            </includes>
+                        </validationSet>
+                    </validationSets>
+                </configuration>
+            </plugin>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.0</version>
+				<executions>
+					<execution>
+						<id>copy-bundles</id>
+						<goals>
+						  <goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+						            <groupId>${project.groupId}</groupId>
+						            <artifactId>${core.name}</artifactId>
+						            <version>${core.version}</version>
+									<outputDirectory>${content.install.dir}</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.day.jcr.vault</groupId>
+				<artifactId>maven-vault-plugin</artifactId>
+				<version>0.0.6</version>
+				<extensions>true</extensions>
+				<configuration>
+					<targetURL>${crx.pkgmgr.url}</targetURL>
+					<user>${crx.user}</user>
+					<password>${crx.password}</password>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install-package</id>
+						<goals>
+							<goal>install</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+        </plugins>
+    </build>
+    
+    <modules>
+    </modules>
+</project>
