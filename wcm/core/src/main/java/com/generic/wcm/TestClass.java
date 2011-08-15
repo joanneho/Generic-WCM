@@ -18,6 +18,6 @@ import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 public class TestClass extends SlingAllMethodsServlet {
 	@Override
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-	    System.out.println("test");
+	    System.out.println("testclass");
 	}
 }
